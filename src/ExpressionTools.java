@@ -19,9 +19,12 @@ public class ExpressionTools {
 			Character token = expression.charAt(i);
 			if(Character.isDigit(token)){
 				integerString.append(token);
+				if(integerString.length() == expression.length()){
+					operands.push(Integer.parseInt(integerString.toString()));
+				}
 			}
 
-			else if(Character.isWhitespace(token) && integerString.length() != 0){
+			else if( (Character.isWhitespace(token) && integerString.length() != 0 ) ){
 				operands.push(Integer.parseInt(integerString.toString()));
 				integerString.setLength(0);
 			}
@@ -52,7 +55,7 @@ public class ExpressionTools {
 				}
 			}
 		}
-		
+		//System.out.println(operands.peek());
 		if(operands.isEmpty()){
 			throw new PostFixException("Not enough operands3");
 		}
@@ -79,7 +82,7 @@ public class ExpressionTools {
 
 		for(int i = 0; i < infix.length(); i++){
 			Character token = infix.charAt(i); //the token we are on
-
+			
 			if( Character.isDigit(token) ){ //if the current token is a digit add to number string
 				integerString.append(token);
 			}
@@ -165,7 +168,7 @@ public class ExpressionTools {
 			if ( isClosedBracket ( currentChar) ) {
 				//System.out.println(unmatchedOpenBrackets);
 				//System.out.println(unmatchedOpenBrackets.peek()+ "  " + currentChar  );
-				if ( !areMatchingBrackets( unmatchedOpenBrackets.pop(), currentChar) )
+				if (unmatchedOpenBrackets.isEmpty() || !areMatchingBrackets( unmatchedOpenBrackets.pop(), currentChar)  )
 					throw new PostFixException("Unbalanced Brackets");
 			}
 			//if the character is anything else, ignore it
@@ -255,5 +258,55 @@ public class ExpressionTools {
 			throw new PostFixException("Divide By Zero");
 		return false;
 	}
+	
+	/**
+	 *
+	 * 
+	 */
+	public static boolean checkSpaces(StringBuilder input){
+		String check = input.toString().trim();
+		StringBuilder num = new StringBuilder();
+		MyStack<Integer> ints = new MyStack<Integer>();
+		MyStack<Character> tokens = new MyStack<Character>();
+		//MyStack<Character> spaces = new MyStack<Character>();
+		
+		for(int i = 0; i < check.length(); i++){
+			Character current = check.charAt(i);
+			if(Character.isDigit(current)){
+				num.append(current);
+				if(i == check.length() - 1){
+					ints.push(Integer.parseInt(num.toString()));
+				}
+			}
+			else if(ExpressionTools.isOperator(current) || ExpressionTools.isOpenBracket(current) || ExpressionTools.isClosedBracket(current)){
+				tokens.push(current);
+				if(num.length() != 0){
+					ints.push(Integer.parseInt(num.toString()));
+					num.setLength(0);
+				}
+			}
+			else{
+				if(num.length() != 0){
+					ints.push(Integer.parseInt(num.toString()));
+					num.setLength(0);
+				}
+				if(!ints.isEmpty()){
+					ints.pop();
+				}
+				else if(!tokens.isEmpty()){
+					tokens.pop();
+				}
+			}
 
+		}
+		//close but not yet
+		
+		if( ints.getSize() == 1  && tokens.isEmpty()|| (tokens.getSize() == 1 && ints.isEmpty())){
+			
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
