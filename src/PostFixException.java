@@ -9,7 +9,8 @@
  */
 public class PostFixException extends Exception {
 	/**
-	 * No arg constructor calls 
+	 * No arg constructor calls no arg constructor 
+	 * of Exception Class
 	 */
 	public PostFixException(){
 		super();
