@@ -67,23 +67,41 @@ The algorithm for converting the infix expressions to postfix expressions is as 
 Algorithm: Conversion from Infix to Postfix Expressions
 
   for each token in the input infix string expression
+
   	if the token is an operand
+  
   		append to postfix string expression
+  
   	else if the token is a left brace
+  
   		push it onto the operator stack
+  
   	else if the token is an operator
+  
   		if the operator stack is not empty
+  
   			while top element on the stack has precedence higher or equal
-  				pop the stack and append to postfix string expression
+  
+				pop the stack and append to postfix string expression
+  		
   		push it (the current operator) onto the operator stack
+  	
   	else if the token is a right brace
+  	
   		while the oerator stack is not empty
+  	
   			if the top of the operator stack is not a matching left brace
+  	
   				pop the operator stack and append to postfix string expression
+  	
   			else
+  	
   				pop the left brace and discard
+  	
   				break
+  
   while the operator stack is not empty
+  
   	pop the operator stack and append to postfix string expression
 
 Note that you will need to build error detection into this algorithm.
@@ -91,6 +109,7 @@ Note that you will need to build error detection into this algorithm.
 If any errors are encountered, your method should throw an exception of type PostFixException with an appropriate message. You should use the following definition of the exception class:
 
 public class PostFixException extends Exception {
+
 	public PostFixException() {
 		super();
 	}
@@ -107,14 +126,23 @@ The algorithm for evaluating the postfix expressions is as follows.
 Algortihm: Evaluation of Postfix Expressions
 
   scan the given postfix expression from left to right
+
   for each token in the input postfix expression
+
   	if the token is an operand
+
   		push it (its value) onto a stack
+
   	else if the token is an operator
+
   		operand2 = pop stack
+
   		operand1 = pop stack
+
   		compute operand1 operator operand2
+
   		push result onto stack
+
   return top of the stack as result
 
 Note that you will need to build error detection into this algorthim. If any errors are encountered, your method should throw an exception of type PostFixException with an appropriate message. 
@@ -124,9 +152,14 @@ Note that you will need to build error detection into this algorthim. If any err
 Both of the above algorithms need to use a stack. You should implement your own reference based stack that follows the following internal interface:
 
 MyStack() Creates an empty Stack.
+
 boolean empty() Tests if this stack is empty.
+
 E    peek() Looks at the object at the top of this stack without removing it from the stack.
+
 E    pop() Removes the object at the top of this stack and returns that object as the value of this function.
+
 E    push(E item) Pushses an item onto the top of this stack.
+
 int    search(Object o) Returns the 1-based position where an object is on this stack.     
 
