@@ -108,16 +108,16 @@ Note that you will need to build error detection into this algorithm.
 
 If any errors are encountered, your method should throw an exception of type PostFixException with an appropriate message. You should use the following definition of the exception class:
 
-public class PostFixException extends Exception {
+	public class PostFixException extends Exception {
 
-	public PostFixException() {
-		super();
-	}
+		public PostFixException() {
+			super();
+		}
 
-	public PostFixException(String message) {
-		super(message);
+		public PostFixException(String message) {
+			super(message);
+		}
 	}
-}
 
 ### Evaluating the Expressions
 
