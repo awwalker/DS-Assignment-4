@@ -66,43 +66,43 @@ The algorithm for converting the infix expressions to postfix expressions is as 
 
 Algorithm: Conversion from Infix to Postfix Expressions
 
-for each token in the input infix string expression
+	for each token in the input infix string expression
 
-  	if the token is an operand
+  		if the token is an operand
   
-  		append to postfix string expression
+  			append to postfix string expression
   
-  	else if the token is a left brace
+  		else if the token is a left brace
   
-  		push it onto the operator stack
+  			push it onto the operator stack
   
-  	else if the token is an operator
+  		else if the token is an operator
   
-  		if the operator stack is not empty
+  			if the operator stack is not empty
   
-  			while top element on the stack has precedence higher or equal
+  				while top element on the stack has precedence higher or equal
   
-				pop the stack and append to postfix string expression
+					pop the stack and append to postfix string expression
   		
-  		push it (the current operator) onto the operator stack
+  			push it (the current operator) onto the operator stack
   	
-  	else if the token is a right brace
+  		else if the token is a right brace
   	
-  		while the oerator stack is not empty
+  			while the oerator stack is not empty
   	
-  			if the top of the operator stack is not a matching left brace
+  				if the top of the operator stack is not a matching left brace
   	
-  				pop the operator stack and append to postfix string expression
+  					pop the operator stack and append to postfix string expression
   	
-  			else
+  				else
   	
-  				pop the left brace and discard
+  					pop the left brace and discard
   	
-  				break
+  					break
   
-  while the operator stack is not empty
+	while the operator stack is not empty
   
-  	pop the operator stack and append to postfix string expression
+  		pop the operator stack and append to postfix string expression
 
 Note that you will need to build error detection into this algorithm.
 
