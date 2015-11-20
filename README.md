@@ -125,25 +125,25 @@ The algorithm for evaluating the postfix expressions is as follows.
 
 Algortihm: Evaluation of Postfix Expressions
 
-  scan the given postfix expression from left to right
+	scan the given postfix expression from left to right
 
-  for each token in the input postfix expression
+	for each token in the input postfix expression
 
-  	if the token is an operand
+  		if the token is an operand
 
-  		push it (its value) onto a stack
+  			push it (its value) onto a stack
 
-  	else if the token is an operator
+  		else if the token is an operator
 
-  		operand2 = pop stack
+  			operand2 = pop stack
 
-  		operand1 = pop stack
+  			operand1 = pop stack
 
-  		compute operand1 operator operand2
+  			compute operand1 operator operand2
 
-  		push result onto stack
+  			push result onto stack
 
-  return top of the stack as result
+	return top of the stack as result
 
 Note that you will need to build error detection into this algorthim. If any errors are encountered, your method should throw an exception of type PostFixException with an appropriate message. 
 
