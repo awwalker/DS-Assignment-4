@@ -66,7 +66,7 @@ The algorithm for converting the infix expressions to postfix expressions is as 
 
 Algorithm: Conversion from Infix to Postfix Expressions
 
-  for each token in the input infix string expression
+for each token in the input infix string expression
 
   	if the token is an operand
   
