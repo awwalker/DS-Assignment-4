@@ -7,6 +7,7 @@
  * @author Aaron Walker
  *
  */
+@SuppressWarnings("serial")
 public class PostFixException extends Exception {
 	/**
 	 * No arg constructor calls no arg constructor 
